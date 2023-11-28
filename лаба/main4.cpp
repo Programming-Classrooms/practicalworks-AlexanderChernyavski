@@ -1,3 +1,5 @@
+*/Разложить функцию y = f(x) в ряд Тейлора по степеням (x - a).
+*/
 #include<iostream>
 #define _USE_MATH_DEFINES
 #include <cmath>
@@ -26,12 +28,9 @@ void main() {
 			s += p;
 			p = ((p * x * x)* n) / (n + 2);
 			++++n;
-			
-		
 		}
 			std::cout << "arth=" << 0.5*logf((1 + x) /( 1 - x)) << '\n';
 		
-		printf("%.100Lf", s);
 	}
 	
 }
