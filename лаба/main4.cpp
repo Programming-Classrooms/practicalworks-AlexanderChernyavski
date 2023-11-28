@@ -1,7 +1,6 @@
 */Разложить функцию y = f(x) в ряд Тейлора по степеням (x - a).
 */
 #include<iostream>
-#define _USE_MATH_DEFINES
 #include <cmath>
 #include <math.h>
 void main() {
