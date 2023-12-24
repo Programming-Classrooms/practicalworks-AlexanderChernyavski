@@ -1,4 +1,4 @@
-/При написании программ использовать нуль–терминированные строки
+//При написании программ использовать нуль–терминированные строки
 //и работать только с типом char* .Длина каждой строки не превосходит 300
 //символов.Словом, входящим в состав строки, назовём непрерывную
 //последовательность символов, ограниченную символами–разделителями,
@@ -24,7 +24,7 @@
 
 
 //Замена символов,которорые не являются буквами/цифрами на пробельный символ
-char* checkStringDelimiters(char* str)
+char* replacingCharacters (char* str)
 {
 	for (size_t i = 0; i < strlen(str)-1; ++i)
 	{
@@ -100,7 +100,7 @@ int main()
 		char str[300];
 		std::cout << "Enter your string" << " ";
 		std::cin.getline(str, 300);
-		checkStringDelimiters(str);
+		replacingCharacters(str);
 		std::cout << "Converted string:" << " ";
 		stringReplace(str);
 		return 0;
