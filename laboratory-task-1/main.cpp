@@ -14,53 +14,53 @@
 
 void checkingEnteredX(int32_t x)
 {
-	if (x > 1 || x < -1)
-	{
-		throw std::exception("incorrect because  (x (-1; +1))");
-	}
+  if (x > 1 || x < -1)
+   {
+       throw std::exception("incorrect because  (x (-1; +1))");
+   }
 }
 
 void checkingEnteredK(int32_t k)
 {
   if (k <= 1)
    {
-	throw std::exception("incorrect because k should be > 1");
+      throw std::exception("incorrect because k should be > 1");
    }
 }
 
 void main() 
 {
-	try
+  try
+   {
+    long double eps, p, sum, x, k;
+    int32_t n;
+    std::cout << "input x (x (-1; +1))";
+    std::cin >> x;
+    checkingEnteredX(x);
+    std::cout << "input k (k > 1)";
+    std::cin >> k;
+     try
+      {
+	checkingEnteredK(k);
+	eps = pow(10, -k);
+	p = x;
+	sum = 0;
+	n = 1;
+	while (fabs(p) >= eps)
 	{
-	  long double eps, p, sum, x, k;
-	  int32_t n;
-	  std::cout << "input x (x (-1; +1))";
-	  std::cin >> x;
-	  checkingEnteredX(x);
-	  std::cout << "input k (k > 1)";
-	  std::cin >> k;
-	   try
-	    {
-		checkingEnteredK(k);
-		eps = pow(10, -k);
-		p = x;
-		sum = 0;
-		n = 1;
-		while (fabs(p) >= eps)
-		{
-		   sum += p;
-		   p = ((p * x * x) * n) / (n + 2);
-		   n += 2;
-		}
-		  std::cout << "arth=" << 0.5 * logf((1 + x) / (1 - x)) << '\n';
-		}
-		catch (std::exception& iss)
-		{
-		   std::cerr << iss.what();
-		}
-	 }
-	catch ( std::exception& is)
-	{
-	   std::cerr << is.what();
+	  sum += p;
+	  p = ((p * x * x) * n) / (n + 2);
+	  n += 2;
 	}
+	  std::cout << "arth=" << 0.5 * logf((1 + x) / (1 - x)) << '\n';
+      }
+      catch (std::exception& iss)
+       {
+	std::cerr << iss.what();
+       }
+	 }
+      catch ( std::exception& is)
+       {
+	std::cerr << is.what();
+       }
 }
