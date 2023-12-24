@@ -35,7 +35,8 @@ void outputArray(std::shared_ptr<int32_t[]> arr, size_t n)
 	std::cout<<'\n';
 }
 
-bool getType(){
+bool getType()
+{
 	int32_t choise = 0;
 	std::cout << "If you want the array to be filled with random elements, enter (0)"
 	          <<"if you want you to enter it yourself, enter (1)" << '\n';
@@ -144,7 +145,8 @@ void polindrom(size_t n, std::shared_ptr<int32_t[]> arr)
 	size_t maxLength = 0;
 	size_t start = 0;
 	size_t end = 0;
-	for (size_t i = 0; i < n; ++i) { 
+	for (size_t i = 0; i < n; ++i) 
+	{ 
 		for (size_t j = i; j < n; ++j) 
 		{
 			bool isPalindrome = true;
@@ -219,6 +221,5 @@ int main()
 	{
 		std::cerr << is.what();
 	}
-
 	return 0;
 }
