@@ -106,7 +106,8 @@ void checkAccuracy(double accuracy)
 
 int main() 
 {
-    try {
+    try 
+      {
         double a, b, accuracy;
         std::cout << "Enter a lower bound for integration: ";
         std::cin >> a;
