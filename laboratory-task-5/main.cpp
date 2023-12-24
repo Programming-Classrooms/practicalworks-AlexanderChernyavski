@@ -44,7 +44,8 @@ double integral3(double x)
     return function;
 }
 
-void leftRectangleMethod(double (*metod)(double) ,double a, double b,double eps) {
+void leftRectangleMethod(double (*metod)(double) ,double a, double b,double eps) 
+{
     uint32_t numberOfSplits = 4;
     long double height = (b - a) / numberOfSplits, result1 = 0, result2 = 0;
     for (size_t step = 0; step <= numberOfSplits; ++step)
@@ -93,7 +94,7 @@ void outputTwoMethods(double (*metod)(double), double a, double b, double eps)
 {
     leftRectangleMethod((*metod), a, b, eps);
     simpsonMethod((*metod), a, b, eps);
- }
+}
 
 void checkAccuracy(double accuracy)
 {
@@ -103,7 +104,8 @@ void checkAccuracy(double accuracy)
     }
 }
 
-int main() {
+int main() 
+{
     try {
         double a, b, accuracy;
         std::cout << "Enter a lower bound for integration: ";
