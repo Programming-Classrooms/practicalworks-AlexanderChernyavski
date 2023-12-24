@@ -101,7 +101,8 @@ void zeroIndex(std::shared_ptr<int32_t[]> arr, size_t n)
 	}
 	if (firstZero == !- 1 && secondZero == !- 1) 
 	{
-		for (size_t i = firstZero + 1; i <= secondZero; ++i) {
+		for (size_t i = firstZero + 1; i <= secondZero; ++i) 
+		{
 			result *= arr[i];
 		}
 		std::cout << "the product is equal to" << result;
@@ -120,7 +121,8 @@ void zeroIndex(std::shared_ptr<int32_t[]> arr, size_t n)
 	}
 }
 
-void transformArray(size_t n, std::shared_ptr<int32_t[]> arr) {
+void transformArray(size_t n, std::shared_ptr<int32_t[]> arr) 
+{
 	std::cout << "Transformed array:" << std::endl;
 	for (size_t i = 0; i < n; ++i) 
 	{
@@ -137,12 +139,14 @@ void transformArray(size_t n, std::shared_ptr<int32_t[]> arr) {
 	}
 }
 
-void polindrom(size_t n, std::shared_ptr<int32_t[]> arr) {
+void polindrom(size_t n, std::shared_ptr<int32_t[]> arr) 
+{
 	size_t maxLength = 0;
 	size_t start = 0;
 	size_t end = 0;
 	for (size_t i = 0; i < n; ++i) { 
-		for (size_t j = i; j < n; ++j) {
+		for (size_t j = i; j < n; ++j) 
+		{
 			bool isPalindrome = true;
 			for (size_t k = i; k <= (i + j) / 2; ++k) 
 			{
@@ -184,14 +188,16 @@ void checkLenthArray(int32_t a)
 	} 
 }
 
-int main() {
+int main() 
+{
 	srand(time(NULL));
 		size_t size = 0;
 		std::cout << "Enter the number of elements in the array\n";
 		std::cin >> size;
 		checkLenthArray(size);
 		std::shared_ptr <int32_t[]> arr(new int32_t[size]);
-    try {
+    try 
+	{
 		if (getType())
 		{
 			randomFilling(size, arr);
@@ -200,7 +206,8 @@ int main() {
 			polindrom(size, arr);
 			transformArray(size, arr);
 		}
-		else {
+		else 
+		{
 			fillingByHands(size, arr);
 			outputArray( arr, size);
 			zeroIndex(arr, size);
