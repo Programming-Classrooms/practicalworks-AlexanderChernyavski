@@ -79,6 +79,7 @@ std::shared_ptr<int32_t[]> fillingByHands(size_t size, std::shared_ptr<int32_t[]
 	}
 	return arr;
 }
+
 void zeroIndex(std::shared_ptr<int32_t[]> arr, size_t n)
 {
 	int32_t firstZero = -1;
