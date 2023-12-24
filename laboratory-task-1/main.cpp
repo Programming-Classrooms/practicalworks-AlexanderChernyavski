@@ -12,7 +12,7 @@
 #include <cmath>
 
 
-void checkingEnteredX(int32_t x)
+void checkEnteredX(int32_t x)
 {
   if (x > 1 || x < -1)
    {
@@ -20,7 +20,7 @@ void checkingEnteredX(int32_t x)
    }
 }
 
-void checkingEnteredK(int32_t k)
+void checkEnteredK(int32_t k)
 {
   if (k <= 1)
    {
@@ -36,12 +36,12 @@ void main()
     int32_t n;
     std::cout << "input x (x (-1; +1))";
     std::cin >> x;
-    checkingEnteredX(x);
+    checkEnteredX(x);
     std::cout << "input k (k > 1)";
     std::cin >> k;
      try
       {
-	checkingEnteredK(k);
+	checkEnteredK(k);
 	eps = pow(10, -k);
 	p = x;
 	sum = 0;
