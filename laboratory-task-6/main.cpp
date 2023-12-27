@@ -97,8 +97,7 @@ void writeToFile(std::shared_ptr<T[]> array, size_t size)
 {
     std::ofstream fout("file.txt");
     if (fout.is_open()) {
-        for (size_t i = 0; i < size; ++i)
-        {
+        for (size_t i = 0; i < size; ++i) {
             fout << array[i] << " ";
         }
         fout.close();
