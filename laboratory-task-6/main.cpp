@@ -21,8 +21,7 @@ size_t countByteOfFile()
 {
     size_t counter = 0;
     std::ifstream fin("file.txt");
-    while (!fin.eof())
-    {
+    while (!fin.eof()) {
         fin.get();
         ++counter;
     }
@@ -35,8 +34,7 @@ template <typename T>
 void directInput(std::shared_ptr<T[]> array, size_t size)
 {
     std::cout << "Enter " << size << " elements: \n";
-    for (size_t i = 0; i < size; ++i)
-    {
+    for (size_t i = 0; i < size; ++i) {
         std::cin >> array[i];
     }
 }
@@ -44,8 +42,7 @@ void directInput(std::shared_ptr<T[]> array, size_t size)
 template <typename T>
 void arrayOutput(std::shared_ptr<T[]> array, size_t size)
 {
-    for (int i = 0; i < size; ++i)
-    {
+    for (int i = 0; i < size; ++i) {
         std::cout << std::setw(5) << array[i] << ' ';
     }
     std::cout << '\n';
@@ -57,20 +54,16 @@ void compressArray(std::shared_ptr<T[]> array, size_t size, T number)
     T writeIndex = 0;
     size_t j = 0;
     size_t counter = 0;
-    for (size_t readIndex = 0; readIndex < size; ++readIndex)
-    {
-        if (fabs(number - array[readIndex]) > 0.0001)
-        {
+    for (size_t readIndex = 0; readIndex < size; ++readIndex) {
+        if (fabs(number - array[readIndex]) > 0.0001) {
             array[j++] = array[readIndex];
         }
-        else if (counter == 0)
-        {
+        else if (counter == 0) {
             writeIndex = array[readIndex + 1];
             ++counter;
         }
     }
-    for (size_t i = j; i < size; ++i)
-    {
+    for (size_t i = j; i < size; ++i) {
         array[i] = writeIndex;
     }
 }
@@ -78,8 +71,7 @@ void compressArray(std::shared_ptr<T[]> array, size_t size, T number)
 // Рандом для инта (я определил от 0 до 100)
 void arrayRand(std::shared_ptr<int32_t[]> array, size_t size)
 {
-    for (size_t i = 0; i < size; ++i)
-    {
+    for (size_t i = 0; i < size; ++i) {
         array[i] = rand() % 100;
     }
 }
@@ -87,8 +79,7 @@ void arrayRand(std::shared_ptr<int32_t[]> array, size_t size)
 // Рандом длявещественных значений
 void arrayRand(std::shared_ptr<double[]> array, size_t size)
 {
-    for (size_t i = 0; i < size; ++i)
-    {
+    for (size_t i = 0; i < size; ++i) {
         array[i] = 10 + (static_cast<double>(rand()) * 90 / RAND_MAX);
     }
 }
@@ -96,8 +87,7 @@ void arrayRand(std::shared_ptr<double[]> array, size_t size)
 // Рандом для символов(генерирует цифрыот 0 до 10, и ещё несколько символов )
 void arrayRand(std::shared_ptr<char[]> array, size_t size)
 {
-    for (size_t i = 0; i < size; ++i)
-    {
+    for (size_t i = 0; i < size; ++i) {
         array[i] = '0' + (rand() % 20);
     }
 }
@@ -106,8 +96,7 @@ template <typename T>
 void writeToFile(std::shared_ptr<T[]> array, size_t size)
 {
     std::ofstream fout("file.txt");
-    if (fout.is_open())
-    {
+    if (fout.is_open()) {
         for (size_t i = 0; i < size; ++i)
         {
             fout << array[i] << " ";
@@ -115,8 +104,7 @@ void writeToFile(std::shared_ptr<T[]> array, size_t size)
         fout.close();
         std::cout << "Data written to file.txt\n";
     }
-    else
-    {
+    else {
         throw std::exception("Unable to open file!\n");
     }
 }
@@ -124,8 +112,7 @@ void writeToFile(std::shared_ptr<T[]> array, size_t size)
 template <typename T>
 void writeOutOfFile(std::shared_ptr<T[]> array, uint32_t size)
 {
-    if (countByteOfFile() != size)
-    {
+    if (countByteOfFile() != size) {
         throw std::exception("The size of the array you entered does not match the number of elements in the file");
     }
     std::ifstream fin("file.txt");
@@ -134,23 +121,18 @@ void writeOutOfFile(std::shared_ptr<T[]> array, uint32_t size)
     countSymbol = fin.tellg();
     fin.close();
     std::ifstream finArrayOutput("file.txt");
-    if (countSymbol >= size)
-    {
-        if (finArrayOutput.is_open())
-        {
-            for (size_t i = 0; i < size && i < countSymbol; ++i)
-            {
+    if (countSymbol >= size) {
+        if (finArrayOutput.is_open()) {
+            for (size_t i = 0; i < size && i < countSymbol; ++i) {
                 finArrayOutput >> array[i];
             }
             finArrayOutput.close();
         }
-        else
-        {
+        else {
             throw std::exception("Unable to open file!");
         }
     }
-    else
-    {
+    else {
         throw std::exception("There is too little data in the file!");
     }
 }
@@ -209,8 +191,7 @@ void selectInputOption(std::shared_ptr<T[]> array, size_t size)
 
 void checkSize(int32_t size)
 {
-    if (size <= 0)
-    {
+    if (size <= 0) {
         throw std::exception("The array length must be natural");
     }
 }
@@ -218,8 +199,7 @@ void checkSize(int32_t size)
 int main()
 {
     srand(time(NULL));
-    try
-    {
+    try {
         int32_t size;
         std::cout << "Enter the size of the array:\n";
         std::cin >> size;
@@ -250,8 +230,7 @@ int main()
             throw std::runtime_error("Invalid choice. Choose between 1, 2, and 3.\n");
         }
     }
-    catch (std::exception &is)
-    {
+    catch (std::exception &is) {
         std::cerr << is.what();
     }
     return 0;
