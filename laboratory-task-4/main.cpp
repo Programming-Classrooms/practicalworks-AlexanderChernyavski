@@ -51,8 +51,8 @@ void randomFilling(int32_t** array, size_t rows, size_t colums)
 	if (first0 > last0) {
 		std::swap(first0, last0);
 	}
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < colums; j++) {
+	for (size_t i = 0; i < rows; ++i) {
+		for (size_t j = 0; j < colums; ++j) {
 			array[i][j] = rand() % (last0 - first0) + first0;
 		}
 	}
@@ -60,8 +60,8 @@ void randomFilling(int32_t** array, size_t rows, size_t colums)
 
 void inputByHands(int32_t** array, size_t rows, size_t colums)
 {
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < colums; j++) {
+	for (size_t i = 0; i < rows; ++i) {
+		for (size_t j = 0; j < colums; ++j) {
 			std::cout << "Write element" << " " << "a [" << i << ']' << " " << '[' << j << ']' << ':' << " " << '\n';
 			std::cin >> array[i][j];
 		}
@@ -96,10 +96,10 @@ void checkNullElementsInColumsAndInMatrix(int32_t** matrix, size_t rows, size_t 
 
 void swapRows(int32_t** array, size_t rows, size_t colums)
 {
-	for (size_t i = 0; i <= rows; i++) {
+	for (size_t i = 0; i <= rows; ++i) {
 		size_t temp = 0;
 		temp = i;
-		for (size_t j = 0; j < colums; j++) {
+		for (size_t j = 0; j < colums; ++j) {
 			if (array[i][j] == 0) {
 				temp = j;
 				std::swap(array[i], array[temp]);
@@ -111,8 +111,8 @@ void swapRows(int32_t** array, size_t rows, size_t colums)
 int64_t productOfElementsLyingBelowTheMainDiagonal(int32_t** array, size_t rows, size_t colums)
 {
 	uint32_t Product = 1;
-	for (size_t i = 1; i < rows; i++) {
-		for (size_t j = 0; j < i; j++) {
+	for (size_t i = 1; i < rows; ++i) {
+		for (size_t j = 0; j < i; ++j) {
 			Product *= array[i][j];
 		}
 	}
@@ -121,8 +121,8 @@ int64_t productOfElementsLyingBelowTheMainDiagonal(int32_t** array, size_t rows,
 
 void outPutArray(int32_t** array, size_t rows, size_t colums)
 {
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < colums; j++) {
+	for (size_t i = 0; i < rows; ++i) {
+		for (size_t j = 0; j < colums; ++j) {
 			std::cout << std::setw(5) << array[i][j];
 		}
 		std::cout << std::endl;
@@ -146,7 +146,7 @@ int main()
 		checkSize(rows);
 		colums = rows;
 		int32_t** array = new int* [rows];
-		for (size_t i = 0; i < rows; i++) {
+		for (size_t i = 0; i < rows; ++i) {
 			array[i] = new int[colums];
 		}
 		if (getType()) {
