@@ -96,6 +96,7 @@ void checkNullElementsInColumsAndInMatrix(int32_t** matrix, size_t rows, size_t 
 
 void swapRows(int32_t** array, size_t rows, size_t colums)
 {
+	rows = rows - 1;
 	for (size_t i = 0; i <= rows; ++i) {
 		size_t temp = 0;
 		temp = i;
@@ -183,3 +184,4 @@ int main()
 	}
 	return 0;
 }
+
