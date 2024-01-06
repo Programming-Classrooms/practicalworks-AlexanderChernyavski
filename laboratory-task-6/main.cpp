@@ -111,29 +111,30 @@ void writeToFile(std::shared_ptr<T[]> array, size_t size)
 template <typename T>
 void writeOutOfFile(std::shared_ptr<T[]> array, uint32_t size)
 {
-    if (countByteOfFile() != size) {
-        throw std::exception("The size of the array you entered does not match the number of elements in the file");
-    }
-    std::ifstream fin("file.txt");
-    uint32_t countSymbol = 0;
-    fin.seekg(0, std::ios_base::end);
-    countSymbol = fin.tellg();
-    fin.close();
+    if (countByteOfFile() == 0)
+	{
+		throw std::exception("File is empty");
+	}
+	else if (countByteOfFile() != size) 
+	{
+		throw std::exception("The size of the array you entered does not match the number of elements in the file");
+	}
+
+	uint32_t countSymbol = countByteOfFile();
     std::ifstream finArrayOutput("file.txt");
-    if (countSymbol >= size) {
-        if (finArrayOutput.is_open()) {
-            for (size_t i = 0; i < size && i < countSymbol; ++i) {
+    
+        if (finArrayOutput.is_open()) 
+        {
+            for (size_t i = 0; i < size && i < countSymbol; ++i) 
+            {
                 finArrayOutput >> array[i];
             }
             finArrayOutput.close();
         }
-        else {
+        else 
+        {
             throw std::exception("Unable to open file!");
         }
-    }
-    else {
-        throw std::exception("There is too little data in the file!");
-    }
 }
 
 template <typename T>
