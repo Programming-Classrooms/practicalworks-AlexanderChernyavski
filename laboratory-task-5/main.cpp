@@ -21,80 +21,109 @@
 */
 
 
-
 #include <iostream>
 #include <cmath>
 
 
-double integral1(double x) 
+double formuleNumber1(double x)
 {
-    long double function = 1 / (1 + sqrt(2 * x));
-    return  function;
+   const double formule = 1 / (1 + sqrt(2 * x));
+    return  formule;
 }
 
-double integral2(double x)
+double formuleNumber2(double x)
 {
-    long double function  = pow(x, 3) * exp(x);
-    return function;
+    const double formule = pow(x, 3) * pow(exp(x),2);
+    return formule;
 }
 
-double integral3(double x)
+double formuleNumber3(double x)
 {
-    long double function = sqrt(pow(2,x)-1);
-    return function;
+    const double formule = sqrt(pow(2, x) - 1);
+    return formule;
 }
 
-void leftRectangleMethod(double (*metod)(double) ,double a, double b,double eps) 
+ double simpsonMethodFormule
+ (double (*formule)(double), const double lowerBoundIntegration, const double upperBoundIntegration, uint32_t numberOfSplits, double height, double& result2)
+{
+    for (size_t i = 0; i < numberOfSplits; ++i)
+    {
+         double x1 = lowerBoundIntegration + i * height;
+         double x2 = lowerBoundIntegration + (i + 1) * height;
+         result2 += (x2 - x1) / 6.0 * (formule(x1) + 4.0 * formule(0.5 * (x1 + x2)) + formule(x2));
+    }
+    return result2;
+}
+
+void calcIntegralSimpson(double (*formule)(double), const double lowerBoundIntegration, const double upperBoundIntegration, double accuracy)
 {
     uint32_t numberOfSplits = 4;
-    long double height = (b - a) / numberOfSplits, result1 = 0, result2 = 0;
-    for (size_t step = 0; step <= numberOfSplits; ++step)
-    {
-        result2 += height * metod(a + height * step);
-    }
-    while (abs(result1 - result2) > eps)
+    double height = (upperBoundIntegration - lowerBoundIntegration) / numberOfSplits, result1 = 0.0, result2 = 0.0;
+    simpsonMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
+    while (abs(result1 - result2) > accuracy)
     {
         result1 = result2;
         result2 = 0;
-        numberOfSplits *= 2; height /= 2;
-        for (size_t i = 0; i <= numberOfSplits; ++i)
-        {
-            result2 += height * metod(a + height * i);
-        }
+        numberOfSplits *= 2;
+        height /= 2;
+        simpsonMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
     }
-    std::cout << "Counting by left rectangle method: " << result2 << "\nNumber of sections: " << numberOfSplits << '\n' ;
+    std::cout << "Result of calculating the integral using Simpson's method: " << result2 << "\nNumber of splits: " << numberOfSplits << '\n';
 }
 
-void simpsonMethod(double (*metod)(double), double a, double b, double eps)
+double leftRectangleMethodFormule
+(double (*formule)(double), const double lowerBoundIntegration, const double upperBoundIntegration, uint32_t numberOfSplits, double& height, double& result)
+{
+    for (size_t i = 1; i <= numberOfSplits; ++i)
+    {
+        result += formule(lowerBoundIntegration + height * i - height / 2);
+    }
+    result *= height;
+    return result;
+}
+void calcIntegralLeftRectangle(double (*formule)(double), const double lowerBoundIntegration, const double upperBoundIntegration,  double accuracy)
 {
     uint32_t numberOfSplits = 4;
-    long double height = (b - a) / numberOfSplits, result1 = 0.0, result2 = 0.0;
-    for (size_t i = 0; i < numberOfSplits; i++)
-    {
-        const double x1 = a + i * height;
-        const double x2 = a + (i + 1) * height;
-        result2 += (x2 - x1) / 6.0 * (metod(x1) + 4.0 * metod(0.5 * (x1 + x2)) + metod(x2));
-    }
-    while (abs(result1 - result2) > eps)
+    double result1=0.0, result2=0.0, height = (upperBoundIntegration - lowerBoundIntegration) / numberOfSplits;
+    leftRectangleMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
+   
+    while (abs(result1 - result2) > accuracy)
     {
         result1 = result2;
         result2 = 0;
-        numberOfSplits *= 2; height /= 2;
-        for (int i = 0; i < numberOfSplits; i++) 
-        {
-            const double x1 = a + i * height;
-            const double x2 = a + (i + 1) * height;
-            result2 += (x2 - x1) / 6.0 * (metod(x1) + 4.0 * metod(0.5 * (x1 + x2)) + metod(x2));
-        }
+        numberOfSplits *= 2;
+        height /= 2;
+        leftRectangleMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
     }
-    std::cout << "Counting by simpson method: " << result2 << "\nNumber of sections: " << numberOfSplits << '\n';
+    std::cout << "Result of calculating the integral using left rectangle method: " << result2 << "\nNumber of splits: " << numberOfSplits << '\n';
 }
 
-void outputTwoMethods(double (*metod)(double), double a, double b, double eps)
+void selectCalcMethod(double (*formule)(double), const double lowerBoundIntegration, const double upperBoundIntegration, double accuracy)
 {
-    leftRectangleMethod((*metod), a, b, eps);
-    simpsonMethod((*metod), a, b, eps);
-}
+    size_t choise;
+    std::cout << "Select the integral formula you want to calculate";
+    std::cout << "Choose an option:\n";
+    std::cout << "1. Calculation of the integral using the left rectangle method\n";
+    std::cout << "2. Calculation of the integral using the simpson method\n";
+    std::cout << "What did you choose: ";
+    std::cin >> choise;
+    switch (choise)
+    {
+    case 1:
+    {
+        calcIntegralLeftRectangle((*formule), lowerBoundIntegration, upperBoundIntegration, accuracy);
+        break;
+    }
+    case 2:
+    {
+        calcIntegralSimpson((*formule), lowerBoundIntegration, upperBoundIntegration, accuracy);
+        break;
+    }
+    default:
+        throw std::runtime_error("Please, to select you need to enter either 1 or 2 or 3");
+        break;
+    }
+ }
 
 void checkAccuracy(double accuracy)
 {
@@ -104,26 +133,58 @@ void checkAccuracy(double accuracy)
     }
 }
 
-int main() 
-{
-    try 
-      {
-        double a, b, accuracy;
-        std::cout << "Enter a lower bound for integration: ";
-        std::cin >> a;
-        std::cout << "Enter an upper bound for integration: ";
-        std::cin >> b;
+int main() {
+    try {
+        double accuracy;
+        size_t choise;
         std::cout << "Enter accuracy (0 < accuracy < 1 and accuracy > 0.000000000000000001): ";
         std::cin >> accuracy;
+        checkAccuracy(accuracy);
         std::cout << std::endl;
-        std::cout << "Function 1: 1 / (1 + sqrt(2 * x))" << '\n';
-        outputTwoMethods(integral1, a, b, accuracy);
-        std::cout << std::endl;
-        std::cout << "Function 2: pow(x, 3) * exp(x)" << '\n';
-        outputTwoMethods(integral2, a, b, accuracy);
-        std::cout << std::endl;
-        std::cout << "Function 3: pow(x, 3) * exp(x)" << '\n';
-        outputTwoMethods(integral3, a, b, accuracy);
+        std::cout << "Select the integral formula you want to calculate";
+        std::cout << "Choose an option:\n";
+        std::cout << "1. Formule No.1 (1 / (1 + sqrt(2 * x)))\n";
+        std::cout << "2. Formule No.2 pow(x, 3) * exp(x)\n";
+        std::cout << "3. Formule No.3 sqrt(pow(2, x) - 1)\n";
+        std::cout << "What did you choose: ";
+        std::cin >> choise;
+        switch (choise)
+        {
+        case 1:
+        {
+            std::cout << "For this formule:\n";
+            std::cout << "lowerBoundIntegration = 0.0\n";
+            std::cout << "upperBoundIntegration = 1.0\n";
+            const double lowerBoundIntegration = 0.0;
+            const double upperBoundIntegration = 1.0;
+            selectCalcMethod(formuleNumber1, lowerBoundIntegration, upperBoundIntegration, accuracy);
+            break;
+        }
+        case 2:
+        {
+            std::cout << "For this formule:\n";
+            std::cout << "lowerBoundIntegration = 0.0\n";
+            std::cout << "upperBoundIntegration = 0.8\n";
+            const double lowerBoundIntegration = 0.0;
+            const double upperBoundIntegration = 0.8;
+            selectCalcMethod(formuleNumber2, lowerBoundIntegration, upperBoundIntegration, accuracy);
+            break;
+        }
+        case 3:
+        {
+            std::cout << "For this formule:\n";
+            std::cout << "lowerBoundIntegration = 0.3\n";
+            std::cout << "upperBoundIntegration = 1.0\n";
+            const double lowerBoundIntegration = 0.3;
+            const double upperBoundIntegration = 1.0;
+            selectCalcMethod(formuleNumber3, lowerBoundIntegration, upperBoundIntegration, accuracy);
+            break;
+        }
+
+        default:
+            throw std::runtime_error("Please, to select you need to enter either 1 or 2 or 3");
+            break;
+        }
     }
     catch (const std::exception& is)
     {
@@ -131,3 +192,4 @@ int main()
     }
     return 0;
 }
+
