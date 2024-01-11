@@ -1,24 +1,24 @@
 /*
-  Вычислить значение определенного интеграла с аналитически заданной подынтегральной
-  функцией с заданной точностью eps.
+    Вычислить значение определенного интеграла с аналитически заданной подынтегральной
+    функцией с заданной точностью eps.
 
-  Б) по формуле правых прямоугольников;
-  Г) по формуле трапеций;
+    Б) по формуле правых прямоугольников;
+    Г) по формуле трапеций;
 
-  где n–число точек деления отрезка [a, b]. Для вычисления первого приближения можно взять
-  number of approximations=4. Чтобы оценить точность, с которой вычислено значение интеграла, необходимо найти второе
-  приближение. Для этого можно увеличить number of approximations в два раза. Если s 1 и s 2 – два соседних приближения и |s 1
-  – s 2 |&lt;eps, то точность считается достигнутой и s 2 принимается за искомое значение интеграла. В
-  противном случае надо положить s 1 = s 2 и удвоить число точек деления отрезка [a, b]. После этого
-  вычисляется новое значение s 2 . Процесс удвоения number of approximations и вычисления s 2 надо продолжать до тех пор,
-  пока модуль разности s 1 и s 2 не станет меньше eps. Остальные формулы посмотреть самим.
-  Разработать функции, реализующие методы вычислений интеграла, входными параметрами
-  которых должны быть функция для вычисления значения подынтегрального выражения, пределы
-  интегрирования и точность вычислений. Головная программа должна вывести результат вычислений
-  для записанных в задании интегралов по заданным формулам и значение number of approximations, при котором достигнута
-  заданная точность. Для проверки вычислений в таблице приведены значения интегралов.
-  Номер задания равен вашему индивидуальному номеру.
-*/
+    где n–число точек деления отрезка [a, b]. Для вычисления первого приближения можно взять
+    number of approximations=4. Чтобы оценить точность, с которой вычислено значение интеграла, необходимо найти второе
+    приближение. Для этого можно увеличить number of approximations в два раза. Если s 1 и s 2 – два соседних приближения и |s 1
+    – s 2 |&lt;eps, то точность считается достигнутой и s 2 принимается за искомое значение интеграла. В
+    противном случае надо положить s 1 = s 2 и удвоить число точек деления отрезка [a, b]. После этого
+    ычисляется новое значение s 2 . Процесс удвоения number of approximations и вычисления s 2 надо продолжать до тех пор,
+    пока модуль разности s 1 и s 2 не станет меньше eps. Остальные формулы посмотреть самим.
+    Разработать функции, реализующие методы вычислений интеграла, входными параметрами
+    которых должны быть функция для вычисления значения подынтегрального выражения, пределы
+    интегрирования и точность вычислений. Головная программа должна вывести результат вычислений
+    для записанных в задании интегралов по заданным формулам и значение number of approximations, при котором достигнута
+    заданная точность. Для проверки вычислений в таблице приведены значения интегралов.
+    Номер задания равен вашему индивидуальному номеру.
+    */
 
 
 #include <iostream>
@@ -59,13 +59,16 @@ void calcIntegralSimpson(double (*formule)(double), const double lowerBoundInteg
 {
     uint32_t numberOfSplits = 4;
     double height = (upperBoundIntegration - lowerBoundIntegration) / numberOfSplits, result1 = 0.0, result2 = 0.0;
+
     simpsonMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
+
     while (abs(result1 - result2) > accuracy)
     {
         result1 = result2;
         result2 = 0;
         numberOfSplits *= 2;
         height /= 2;
+
         simpsonMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
     }
     std::cout << "Result of calculating the integral using Simpson's method: " << result2 << "\nNumber of splits: " << numberOfSplits << '\n';
@@ -85,6 +88,7 @@ void calcIntegralLeftRectangle(double (*formule)(double), const double lowerBoun
 {
     uint32_t numberOfSplits = 4;
     double result1=0.0, result2=0.0, height = (upperBoundIntegration - lowerBoundIntegration) / numberOfSplits;
+
     leftRectangleMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
    
     while (abs(result1 - result2) > accuracy)
@@ -93,6 +97,7 @@ void calcIntegralLeftRectangle(double (*formule)(double), const double lowerBoun
         result2 = 0;
         numberOfSplits *= 2;
         height /= 2;
+        
         leftRectangleMethodFormule(formule, lowerBoundIntegration, upperBoundIntegration, numberOfSplits, height, result2);
     }
     std::cout << "Result of calculating the integral using left rectangle method: " << result2 << "\nNumber of splits: " << numberOfSplits << '\n';
