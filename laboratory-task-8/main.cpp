@@ -61,7 +61,7 @@ std::string characterReplace(std::string word)
 	}
 	else
 	{
-		for (int i = 0; i <= wordLength - 1; ++i)
+		for (size_t i = 0; i <= wordLength - 1; ++i)
 		{
 			word[i] = toupper(word[i]);
 		}
