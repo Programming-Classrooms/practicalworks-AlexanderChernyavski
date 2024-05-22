@@ -1,0 +1,10 @@
+Fisherman1:
+fugu	kosatka	lococ	
+Fisherman2:
+karas	lococ	okyn	ryba	
+Fisherman3:
+karas	pirania	ryba	
+All fish int the lake
+akyla	fugu	govoryachaya_ryba	karas	kosatka	lococ	okyn	pirania	ryba	zolotaya_rybka	
+Fish not caught
+akyla	govoryachaya_ryba	zolotaya_rybka	
