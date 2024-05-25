@@ -1,0 +1,23 @@
+UDC number: 978-3-16-148410-0
+Authors: Ivanov Ivan Ivanovich, Petrov Petr Petrovich
+
+Title: Python Programming
+Year of publication: 2020
+
+
+
+UDC number: 978-3-16-148412-0
+Authors: Sidorov Alexander Vasilievich
+
+
+
+
+
+
+Title: Introduction Algorithms
+Year of publication: 2018
+
+UDC number: 978-3-16-148411-0
+Authors: Petrov Petrovich, Ivanov Ivan Ivanovich
+Title: Database Basics
+Year of publication: 2019
