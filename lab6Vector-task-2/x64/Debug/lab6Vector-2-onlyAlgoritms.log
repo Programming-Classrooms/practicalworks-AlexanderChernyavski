@@ -1,0 +1,3 @@
+﻿  main.cpp
+E:\lab6Vector-2-onlyAlgoritms\main.cpp(54,18): warning C4267: =: преобразование из "size_t" в "int32_t"; возможна потеря данных
+  lab6Vector-2-onlyAlgoritms.vcxproj -> E:\lab6Vector-2-onlyAlgoritms\x64\Debug\lab6Vector-2-onlyAlgoritms.exe
