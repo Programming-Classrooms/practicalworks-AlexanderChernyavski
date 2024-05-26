@@ -1,0 +1,6 @@
+ 12 gorodOmsk Passenger 12:55 3
+ 10 gorodOmsk Express 13:28 1
+ 14 Kostroma  Express 09:33 15
+ 17 Brest Passenger 04:12 3
+ 28 BelGYT Express  20:25 4
+ 45 VTFBelGYT Passenger 21:00 4
