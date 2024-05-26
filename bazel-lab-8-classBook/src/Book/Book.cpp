@@ -1,7 +1,7 @@
 #include "Book.hpp"
 
 
-Book::Book(const std::string isbn, std::set<std::string> authors, std::string title_, double price_, uint32_t count_) :
+Book::Book( std::string isbn, std::set<std::string> authors, std::string title_, double price_, uint32_t count_) :
 	ISBN(isbn),
 	authors(authors),
 	title(title_),
@@ -15,23 +15,19 @@ Book::Book(const std::string isbn, std::set<std::string> authors, std::string ti
 
 }
 
-Book::~Book()
-{
-}
-
-std::string Book::getISBN()
+std::string Book::getISBN() const 
 {
 	return ISBN;
 }
 
-std::string  Book::getTitle()
+std::string  Book::getTitle() const 
 {
 	return title;
 }
 
 std::ostream& Book::displayBook(std::ostream& out)
 {
-	out << "ISBN: " << ISBN << " Title: " << " Authors: " << '\n';
+	out << "ISBN: " << ISBN << " Title: "<<title << " Authors: " << '\n';
 	for (auto& author : authors)
 	{
 		out << author << '\n';
@@ -44,6 +40,7 @@ Book& Book::operator=(const Book& other)
 {
 		if (this != &other) 
 		{
+			ISBN = other.ISBN;
 			authors = other.authors;
 			title = other.title;
 			price = other.price;
@@ -51,3 +48,6 @@ Book& Book::operator=(const Book& other)
 		}
 		return *this;
 	}
+
+    
+    

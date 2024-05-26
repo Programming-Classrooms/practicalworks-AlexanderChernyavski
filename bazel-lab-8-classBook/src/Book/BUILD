@@ -5,7 +5,4 @@ cc_library(
     srcs = ["Book.cpp"],
     hdrs = ["Book.hpp"],
     visibility = ["//visibility:public"],
-    deps = [
-       
-    ],
 )

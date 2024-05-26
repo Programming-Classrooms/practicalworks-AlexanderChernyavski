@@ -7,5 +7,4 @@ cc_binary(
         "//src/Book:Book",
          "//src/Library:Library"
     ],
-   
 )
