@@ -2,9 +2,9 @@
 
 cc_test(
     name = "tests",
-    srcs = ["tests.cpp"],
+    srcs = ["ExamTests.cpp"],
     deps = [
         "@googletest//:gtest_main",
-        "//src/Stack:Stack",
+        "//src/examTask:examTask",
     ]
 )
