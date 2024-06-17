@@ -1,0 +1,2 @@
+ForestTree Birch 50 deciduous 100
+ForestTree Fir-tree 30 deciduous 80
